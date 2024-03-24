@@ -1,0 +1,36 @@
+<!doctype html>
+
+<html style="height:100%;">
+
+<head>
+  <meta charset="utf-8">
+  <title>WebGPU Life</title>
+</head>
+<style>
+  /* .scrollable-place {
+    height: 1000px;
+  } */
+
+  .disable-scrolling {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  canvas {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+</style>
+
+<body style="margin: 0px; background-color: black;">
+  <canvas style="overflow:hidden;"></canvas>
+
+  <script type="module" src="script.js"></script>
+  <script type="module" src="gool.js"></script>
+  <script type="module" src="gool_vertex_shader.wgsl.js"></script>
+  <script type="module" src="gool_compute_shader.wgsl.js"></script>
+
+</body>
+
+</html>
