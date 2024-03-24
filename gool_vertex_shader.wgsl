@@ -41,5 +41,5 @@ fn fragmentMain(input: FragInput) -> @location(0) vec4f {
   let closeX = abs(input.cell.x - max);
   let closeY = abs(input.cell.y - max);
   let closeToCenter = ((closeX * closeX)/6 + (closeY * closeY)/6) / grid;
-  return vec4f( 1 - closeToCenter, 1 - closeToCenter.x,  1);
+  return vec4f( 0.5 - closeToCenter, 1 - closeToCenter.x,  1);
 }
