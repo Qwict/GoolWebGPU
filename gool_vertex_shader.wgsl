@@ -1,5 +1,4 @@
 // Install WGSL Literal on vscode to get SYNTAX highlights in this code :)
-export const shader = /* wgsl */`
 struct VertexInput {
   @location(0) pos: vec2f,
   @builtin(instance_index) instance: u32,
@@ -41,8 +40,6 @@ fn fragmentMain(input: FragInput) -> @location(0) vec4f {
   let max = grid / 2;
   let closeX = abs(input.cell.x - max);
   let closeY = abs(input.cell.y - max);
-  let closeToCenter = 1 - (closeX + closeY) / (0.5 * grid);
-  return vec4f(closeToCenter - 0.5, closeToCenter.x, 1);
+  let closeToCenter = ((closeX * closeX)/6 + (closeY * closeY)/6) / grid;
+  return vec4f( 1 - closeToCenter, 1 - closeToCenter.x,  1);
 }
-
-`;

@@ -1,5 +1,8 @@
-import { shader } from './gool_vertex_shader.wgsl.js';
+// import { shader } from './gool_vertex_shader.wgsl.js';
 // import { computeShader } from './gool_compute.wgsl.js';
+
+const shaderResponse = await fetch('./gool_vertex_shader.wgsl')
+const shader = await shaderResponse.text();
 
 const GRID_SIZE = 64;
 const UPDATE_INTERVAL = 200; // Update every 200ms (5 times/sec)
