@@ -1,8 +1,7 @@
-// import { shader } from './gool_vertex_shader.wgsl.js';
-// import { computeShader } from './gool_compute.wgsl.js';
-
-const shaderResponse = await fetch('./gool_vertex_shader.wgsl')
+const shaderResponse = await fetch('./gool_vertex_shader.wgsl');
 const shader = await shaderResponse.text();
+const computeShaderResponse = await fetch('./gool_compute_shader.wgsl');
+const computeShader = await computeShaderResponse.text();
 
 const GRID_SIZE = 64;
 const UPDATE_INTERVAL = 200; // Update every 200ms (5 times/sec)
@@ -48,11 +47,11 @@ context.configure({
 // Create the vertices
 const vertices = new Float32Array([
   //   X,    Y,
-  -0.8, -0.8, // Triangle 1 (Blue)
+  -0.8, -0.8, // Triangle 1
   0.8, -0.8,
   0.8, 0.8,
 
-  -0.8, -0.8, // Triangle 2 (Red)
+  -0.8, -0.8, // Triangle 2
   0.8, 0.8,
   -0.8, 0.8,
 ]);
@@ -170,17 +169,10 @@ const bindGroups = [
   })
 ];
 
-// TODO create the compute shader for the game of life
-// const simulationShaderModule = device.createShaderModule({
-//   label: "Game of Life simulation shader",
-//   code: computeShader
-// });
 
-
-
-// Move all of our rendering code into a function
+// All render code in one function
 function updateGrid() {
-  step++; // Increment the step count
+  step++;
 
   // Start a render pass 
   const encoder = device.createCommandEncoder();
@@ -195,7 +187,7 @@ function updateGrid() {
 
   // Draw the grid.
   pass.setPipeline(cellPipeline);
-  pass.setBindGroup(0, bindGroups[step % 2]); // Updated!
+  pass.setBindGroup(0, bindGroups[step % 2]);
   pass.setVertexBuffer(0, vertexBuffer);
   pass.draw(vertices.length / 2, GRID_SIZE * GRID_SIZE);
 
